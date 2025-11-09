@@ -10,8 +10,8 @@
     jbcs_mod_cluster_enable: true
   collections:
     - redhat.jbcs
-  roles:
-    - jbcs
+  #roles:
+    #- jbcs
   pre_tasks:
     - name: Set httpd_can_network_connect flag on and keep it persistent across reboots
       ansible.posix.seboolean:
@@ -30,6 +30,11 @@
       ansible.builtin.command: semanage port -m -t http_port_t -p tcp 8009
       changed_when: False
   tasks:
+    - name: JBCS Role
+      ansible.builtin.include_role:
+        name: jbcs
+        apply:
+          become: false
     - name: install firewalld
       become: true
       action: yum name=firewalld state=installed
