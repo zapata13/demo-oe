@@ -1,20 +1,20 @@
-# Placeholder Group
-[demo]
-
-# jboss Group
-[jboss]
-192.168.122.64 
-192.168.122.224 
-
-# postgres database Group
-[pgsql]
-192.168.122.20
-
-# jcbs Group
 [jbcs]
-192.168.122.247
+frontend1.prdkt.internal
+
+[jboss]
+app2.prdkt.internal
+app1.prdkt.internal
+
+[pgsql]
+appdb1.prdkt.internal
 
 [demo:children]
 jboss
 pgsql
-jbcs
+jbcs 
+
+[demo:vars]
+timeout=60
+ansible_user=ec2-user
+ansible_ssh_private_key_file="~/.ssh/prdktkey.pem"
+ansible_ssh_common_args="-o StrictHostKeyChecking=no"
