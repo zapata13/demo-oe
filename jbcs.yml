@@ -1,7 +1,6 @@
 ---
 - name: Playbook for loadbalancer Hosts
   hosts: jbcs
-  become: true
   vars:
     jbcs_ssl_enable: true
     jbcs_zip_path: /tmp
@@ -33,8 +32,6 @@
     - name: Incluir role JBCS
       ansible.builtin.include_role:
         name: jbcs
-        apply:
-          become: false
     - name: install firewalld
       become: true
       action: yum name=firewalld state=installed
