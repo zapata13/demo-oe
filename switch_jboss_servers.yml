@@ -1,0 +1,31 @@
+- name: Stop JBoss EAP from advertising to JBCS's mod_proxy_cluster
+  hosts: jboss
+  vars:
+    # Pass the fail_actions 
+    # fail_action: failover
+    # fail_action: failback
+    # cluster_role comes from inventory
+    # cluster_role: main
+    # cluster_role: dr
+  tasks:
+    - name: Disable depending on action and role
+      ansible.builtin.set_fact:
+        jboss_cli_command: "'stop'" 
+      when: fail_action=='failover' and cluster_role=='main' or
+            fail_action=='failback' and cluster_role=='dr'
+
+    - name: Enable depending on action and role
+      ansible.builtin.set_fact:
+        jboss_cli_command: "'enable'" 
+      when: fail_action=='failover' and cluster_role=='dr' or
+            fail_action=='failback' and cluster_role=='main' 
+
+    - name: Use the JBoss CLI to selectively disable/enable advertising to JBCS
+      ansible.builtin.include_role:
+        name: eap_utils
+        tasks_from: jboss_cli.yml
+      vars:
+        jboss_cli_query: "{{ jboss_cli_command }}"
+      # If an invalid combination of fail_action and server is passed, do nothing
+      when: jboss_cli_command is defined
+
