@@ -37,5 +37,5 @@ wildfly-configuration:
     standard-sockets:
       remote-destination-outbound-socket-binding:
         proxy1:
-          host: {{ groups['jbcs'][0] }}
+          host: {{ jbcs.url }}
           port: 6666
