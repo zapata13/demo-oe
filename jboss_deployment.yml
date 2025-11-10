@@ -38,6 +38,12 @@
         url: "{{ app.url }}"
         dest: "/opt/jboss_eap/jboss-eap-7.4/standalone/deployments/{{ app.name }}"
       become: true
+    - name: "Reload webapp"
+      include_role:
+        name: eap_utils
+        tasks_from: jboss_cli.yml
+      vars:
+        jboss_cli_query: "reload"
   post_tasks:
       - include_tasks: validate.yml
         loop: 
