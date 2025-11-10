@@ -23,3 +23,13 @@
             ebs:
               volume_size: 20
               delete_on_termination: true
+      register: ec2_instance_result
+    - name: Create A record frontend
+      amazon.aws.route53:
+        state: present
+        zone: sandbox758.opentlc.com
+        record: '{{ record_name }}.sandbox758.opentlc.com'
+        type: A
+        ttl: 300
+        value: "{{ ec2_instance_result.instances[0].public_ip_address }}"
+      when: type_ec2 == 'jbcs'

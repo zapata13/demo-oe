@@ -1,0 +1,12 @@
+---
+- name: Create a A Record on Route53
+  hosts: localhost
+  tasks:
+    - name: Create A record frontend
+      amazon.aws.route53:
+        state: present
+        zone: sandbox758.opentlc.com
+        record: {{ record_name }}
+        type: A
+        ttl: 300
+        value: "{{ route53_record_value }}"
