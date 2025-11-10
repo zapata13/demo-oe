@@ -5,7 +5,7 @@
     - name: Create ec2 m5.xlarge instance
       amazon.aws.ec2_instance:
         name: "{{ key_name }}"
-        key_name: "{{ key_name }}"
+        key_name: demo-oe-mh
         instance_type: m5.xlarge
         image_id: ami-05969be345d4c5c67
         wait: true
