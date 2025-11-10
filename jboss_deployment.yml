@@ -40,9 +40,8 @@
       become: true
     - name: "Deploy webapp"
       ansible.builtin.copy:
-        src: "/opt/jboss_eap/jboss-eap-7.4/{{ app.name }}"
+        remote_src: "/opt/jboss_eap/jboss-eap-7.4/{{ app.name }}"
         dest: "/opt/jboss_eap/jboss-eap-7.4/standalone/deployments/{{ app.name }}"
-      become: true
   post_tasks:
       - include_tasks: validate.yml
         loop: 
