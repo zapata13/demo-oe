@@ -1,7 +1,6 @@
 ---
 - name: "Deploy a JBoss EAP"
   hosts: jboss
-  become: true
   vars:
     eap_apply_cp: true
     eap_version: 7.4.0
