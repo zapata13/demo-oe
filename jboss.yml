@@ -19,10 +19,20 @@
       url: 'https://gpte-public.s3.amazonaws.com/addressbook.war'
   collections:
     - redhat.eap
-  roles:
-    - eap_install
-    - eap_systemd
+  #roles:
+  #  - eap_install
+  #  - eap_systemd
   tasks:
+    - name: Incluir role EAP Install
+      ansible.builtin.include_role:
+        name: eap_install
+        apply:
+          become: false
+    - name: Incluir role EAP Systemd
+      ansible.builtin.include_role:
+        name: eap_systemd
+        apply:
+          become: false
     - name: "Set up for JBoss module"
       include_role:
         name: eap_driver
