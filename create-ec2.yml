@@ -17,6 +17,7 @@
           purpose: demo-oe-mh
         vpc_subnet_id: subnet-05d9f1634c64f64db
         security_group: aws-test-sg
+        region: us-east-1
         volumes:
           - device_name: /dev/sda1
             ebs:
