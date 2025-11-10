@@ -22,7 +22,7 @@
 
     - name: Use the JBoss CLI to selectively disable/enable advertising to JBCS
       ansible.builtin.include_role:
-        name: eap_utils
+        redhat.eap.name: eap_utils
         tasks_from: jboss_cli.yml
       vars:
         jboss_cli_query: "{{ jboss_cli_command }}"
