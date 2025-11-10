@@ -13,8 +13,8 @@
         network_interfaces:
           - assign_public_ip: true
         tags:
-          type: jboss
-          purpose: demo-oe-mh
+          type: {{ type_ec2 }}
+          purpose: {{purpose_ec2}}
         vpc_subnet_id: subnet-05d9f1634c64f64db
         security_group: aws-test-sg
         region: us-east-1
