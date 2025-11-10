@@ -44,6 +44,7 @@
         tasks_from: jboss_cli.yml
       vars:
         jboss_cli_query: "reload"
+        jboss_cli_timeout: 20000
   post_tasks:
       - include_tasks: validate.yml
         loop: 
