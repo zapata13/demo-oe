@@ -28,6 +28,8 @@
     - name: Incluir role EAP Systemd
       ansible.builtin.include_role:
         name: eap_systemd
+        apply:
+          become: true
     - name: "Set up for JBoss module"
       include_role:
         name: eap_driver
