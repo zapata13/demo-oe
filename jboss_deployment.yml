@@ -36,12 +36,8 @@
     - name: "Ensures webapp {{ app.name }} has been retrieved from {{ app.url }}"
       get_url:
         url: "{{ app.url }}"
-        dest: "/opt/jboss_eap/jboss-eap-7.4/{{ app.name }}"
-      become: true
-    - name: "Deploy webapp"
-      ansible.builtin.copy:
-        remote_src: "/opt/jboss_eap/jboss-eap-7.4/{{ app.name }}"
         dest: "/opt/jboss_eap/jboss-eap-7.4/standalone/deployments/{{ app.name }}"
+      become: true
   post_tasks:
       - include_tasks: validate.yml
         loop: 
