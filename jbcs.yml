@@ -8,7 +8,6 @@
     jbcs_bind_address: 0.0.0.0
     jbcs_offline_install: false
     jbcs_mod_cluster_enable: true
-    jbcs_bundle: "jbcs-httpd24-httpd-2.4.62-RHEL9-x86_64.zip"
   collections:
     - redhat.jbcs
   #roles:
