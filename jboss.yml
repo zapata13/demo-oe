@@ -2,7 +2,7 @@
 - name: "Deploy a JBoss EAP"
   hosts: jboss
   vars:
-    eap_apply_cp: false
+    eap_apply_cp: true
     eap_version: 7.4.0
     eap_offline_install: false
     eap_config_base: 'standalone-full-ha.xml'
