@@ -1,0 +1,23 @@
+---
+- name: Create a ec2 instance
+  hosts: localhost
+  tasks:
+    - name: Create ec2 m5.xlarge instance
+      ec2:
+        key_name: "{{ key_name }}"
+        instance_type: m5.xlarge
+        image: ami-05969be345d4c5c67
+        wait: true
+        exact_count: 1
+        assign_public_ip: true
+        instance_tags:
+          type: jboss
+          purpose: demo-oe-mh
+        vpc_subnet_id: subnet-05d9f1634c64f64db
+        group:
+          - aws-test-sg
+        volumes:
+          - device_name: /dev/sda1
+            ebs:
+              volume_size: 20
+              delete_on_termination: true
