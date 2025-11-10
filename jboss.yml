@@ -37,6 +37,7 @@
       get_url:
         url: "{{ app.url }}"
         dest: "/opt/jboss_eap/jboss-eap-7.4/{{ app.name }}"
+      become: true
     - name: "Deploy webapp"
       include_role:
         name: eap_utils
